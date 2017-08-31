@@ -21,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/mkg20001/js-libp2p-websocket-star-multi/issues"
   },
-  "homepage": "https://github.com/mkg20001/js-libp2p-websocket-star-multi#readme"
+  "homepage": "https://github.com/mkg20001/js-libp2p-websocket-star-multi#readme",
+  "dependencies": {
+    "async": "^2.5.0",
+    "debug": "^3.0.1",
+    "libp2p-websocket-star": "^0.2.5",
+    "multiaddr": "^2.3.0"
+  }
 }
