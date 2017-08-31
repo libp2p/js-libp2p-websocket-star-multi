@@ -1,0 +1,25 @@
+{
+  "name": "libp2p-websocket-star-multi",
+  "version": "0.0.1",
+  "description": "Allows to listen on multiple websocket-star servers while ignoring offline ones",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "libp2p",
+    "websocket-star",
+    "round-robin",
+    "multiple"
+  ],
+  "author": "Maciej Krüger <mkg20001@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkg20001/js-libp2p-websocket-star-multi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mkg20001/js-libp2p-websocket-star-multi/issues"
+  },
+  "homepage": "https://github.com/mkg20001/js-libp2p-websocket-star-multi#readme"
+}
