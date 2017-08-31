@@ -1,6 +1,6 @@
 {
   "name": "libp2p-websocket-star-multi",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Allows to listen on multiple websocket-star servers while ignoring offline ones",
   "main": "index.js",
   "scripts": {
