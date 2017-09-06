@@ -1,7 +1,7 @@
 # libp2p-websocket-star
 
 [![](https://img.shields.io/badge/made%20by-mkg20001-blue.svg?style=flat-square)](http://ipn.io)
-[![Build Status](https://travis-ci.org/mkg20001/js-libp2p-websocket-star.svg?style=flat-square)](https://travis-ci.org/mkg20001/js-libp2p-websocket-star)
+[![Build Status](https://travis-ci.org/libp2p/js-libp2p-websocket-star.svg?style=flat-square)](https://travis-ci.org/libp2p/js-libp2p-websocket-star)
 
 ![](https://raw.githubusercontent.com/libp2p/interface-connection/master/img/badge.png)
 ![](https://raw.githubusercontent.com/libp2p/interface-transport/master/img/badge.png)
@@ -26,8 +26,6 @@
 
 [![](https://raw.githubusercontent.com/libp2p/interface-transport/master/img/badge.png)](https://github.com/libp2p/interface-transport)
 
-Currently websocket-star-multi uses the /libp2p-webrtc-star/ address prefix as we don't have our own just yet.
-
 ### Example
 
 ```js
@@ -43,12 +41,12 @@ Id.create((err, id) => {
   if (err) throw err
 
   const peerInfo = new Info(id)
-  peerInfo.multiaddrs.add(multiaddr("/libp2p-webrtc-star"))
+  peerInfo.multiaddrs.add(multiaddr("/p2p-websocket-star"))
   const ws = new WSStarMulti({
     servers: [ // servers are Multiaddr[]
-      "/libp2p-webrtc-star/ip4/148.251.206.162/tcp/9090/ws/",
-      "/libp2p-webrtc-star/ip4/136.243.31.32/tcp/4278/ws/",
-      "/libp2p-webrtc-star/dns4/localhost/ws/"
+      "/dns/ws-star-signal-1.servep2p.com/wss/p2p-websocket-star",
+      "/dns/ws-star-signal-2.servep2p.com/wss/p2p-websocket-star",
+      "/dns4/localhost/ws/p2p-websocket-star"
     ],
     //ignore_no_online: true, //enable this to prevent wstar-multi from returning a listen error if no servers are online
     id // the id is required for the crypto challenge

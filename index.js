@@ -9,6 +9,7 @@ const {
   parallel
 } = require("async")
 const multiaddr = require('multiaddr')
+const mafmt = require("mafmt")
 
 const WSStar = require("libp2p-websocket-star")
 class WebsocketStarMulti { //listen on multiple websocket star servers without having to worry about one being down.
@@ -75,9 +76,7 @@ class WebsocketStarMulti { //listen on multiple websocket star servers without h
 
   filter(ma) {
     if (!Array.isArray(ma)) ma = [ma]
-    return ma.filter(ma => {
-      if (ma.toString().startsWith("/libp2p-webrtc-star")) return true //we essentially use all the addresses of webrtc-star
-    })
+    return ma.filter(ma => ma.toString() == "/p2p-websocket-star" || mafmt.WebSocketStar.matches(ma))
   }
 }
 

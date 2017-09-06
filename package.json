@@ -25,7 +25,8 @@
   "dependencies": {
     "async": "^2.5.0",
     "debug": "^3.0.1",
-    "libp2p-websocket-star": "^0.2.6",
-    "multiaddr": "^2.3.0"
+    "libp2p-websocket-star": "^0.3.0-rc4",
+    "mafmt": "^3.0.1",
+    "multiaddr": "^3.0.1"
   }
 }
