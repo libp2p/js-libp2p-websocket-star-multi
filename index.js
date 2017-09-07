@@ -2,6 +2,7 @@
 
 const debug = require("debug")
 const log = debug("libp2p:websocket-star:multi")
+const once = require("once")
 
 const EE = require('events').EventEmitter
 const {
@@ -45,11 +46,15 @@ class WebsocketStarMulti { //listen on multiple websocket star servers without h
       log("listen on %s server(s) with id %s", this.servers.length, id)
       parallel(this.servers.map(url => listener.servers[url]).map(server =>
         cb => {
-          server.listen(multiaddr(server.url).encapsulate("ipfs/" + id), err => {
-            if (err) return cb()
+          log("listen %s", server.url)
+          const next = once(err => {
+            log("listen %s ok %s", server.url, !err)
+            if (err) return cb(log(err))
             listener.online.push(server)
             return cb()
           })
+          setTimeout(next, this.opt.timeout || 5000, new Error("Timeout"))
+          server.listen(multiaddr(server.url).encapsulate("ipfs/" + id), next)
         }), () => {
         if (!listener.online.length && !this.opt.ignore_no_online) {
           const e = new Error("Couldn't listen on any of the servers")
