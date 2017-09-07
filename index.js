@@ -76,7 +76,7 @@ class WebsocketStarMulti { //listen on multiple websocket star servers without h
 
   filter(ma) {
     if (!Array.isArray(ma)) ma = [ma]
-    return ma.filter(ma => ma.toString() == "/p2p-websocket-star" || mafmt.WebSocketStar.matches(ma))
+    return ma.filter(ma => ma.toString().startsWith("/p2p-websocket-star") || mafmt.WebSocketStar.matches(ma))
   }
 }
 
