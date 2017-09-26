@@ -2,9 +2,14 @@
   "name": "libp2p-websocket-star-multi",
   "version": "0.1.1",
   "description": "Allows to listen on multiple websocket-star servers while ignoring offline ones",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp build",
+    "test": "gulp test",
+    "test:node": "gulp test:node",
+    "test:browser": "gulp test:browser",
+    "coverage": "gulp coverage",
+    "coverage-publish": "aegir-coverage publish"
   },
   "keywords": [
     "libp2p",
@@ -25,9 +30,17 @@
   "dependencies": {
     "async": "^2.5.0",
     "debug": "^3.0.1",
-    "libp2p-websocket-star": "^0.3.0-rc4",
+    "libp2p-websocket-star": "^0.4.1",
     "mafmt": "^3.0.1",
     "multiaddr": "^3.0.1",
     "once": "^1.4.0"
+  },
+  "devDependencies": {
+    "aegir": "^11.0.2",
+    "chai": "^4.1.2",
+    "dirty-chai": "^2.0.1",
+    "gulp": "^3.9.1",
+    "libp2p-websocket-star-rendezvous": "github:libp2p/js-libp2p-websocket-star-rendezvous",
+    "lodash": "^4.17.4"
   }
 }
