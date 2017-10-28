@@ -8,9 +8,9 @@
     "test": "aegir test --target node --target browser",
     "test:node": "aegir test --target node",
     "test:browser": "aegir test --target browser",
-    "release": "aegir test release --target node --target browser",
-    "release-minor": "aegir release --type minor --target node --target browser",
-    "release-major": "aegir release --type major --target node --target browser",
+    "release": "aegir test release --lint=false --target node --target browser",
+    "release-minor": "aegir release --lint=false --type minor --target node --target browser",
+    "release-major": "aegir release --lint=false --type major --target node --target browser",
     "coverage": "aegir coverage",
     "coverage-publish": "aegir coverage --provider coveralls"
   },
