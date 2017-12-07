@@ -1,31 +1,31 @@
-"use strict"
+'use strict'
 
-const debug = require("debug")
-const log = debug("libp2p:websocket-star:multi")
-const once = require("once")
+const debug = require('debug')
+const log = debug('libp2p:websocket-star:multi')
+const once = require('once')
 
 const EE = require('events').EventEmitter
 const {
   map,
   parallel
-} = require("async")
+} = require('async')
 const multiaddr = require('multiaddr')
-const mafmt = require("mafmt")
+const mafmt = require('mafmt')
 
-const WSStar = require("libp2p-websocket-star")
-class WebsocketStarMulti { //listen on multiple websocket star servers without having to worry about one being down.
+const WSStar = require('libp2p-websocket-star')
+class WebsocketStarMulti { // listen on multiple websocket star servers without having to worry about one being down.
   // NOTE: if no servers are reachable or provided an error is thrown
-  constructor(opt) {
+  constructor (opt) {
     this.opt = opt || {}
     this.servers = opt.servers || []
     this.ws = new WSStar(this.opt)
     this.discovery = this.ws.discovery
   }
-  dial(ma, opt, cb) {
-    log("dial", ma)
+  dial (ma, opt, cb) {
+    log('dial', ma)
     return this.ws.dial(ma, opt, cb)
   }
-  createListener(options, handler) {
+  createListener (options, handler) {
     if (typeof options === 'function') {
       handler = options
       options = {}
@@ -36,32 +36,32 @@ class WebsocketStarMulti { //listen on multiple websocket star servers without h
     listener.online = []
     this.servers.forEach(ser => {
       const s = this.ws.createListener(options, handler)
-      s.once("error", () => {})
+      s.once('error', () => {})
       s.url = ser
       listener.servers[ser] = s
     })
 
     listener.listen = (ma, cb) => {
-      const id = ma.toString().split("ipfs/").pop()
-      log("listen on %s server(s) with id %s", this.servers.length, id)
+      const id = ma.toString().split('ipfs/').pop()
+      log('listen on %s server(s) with id %s', this.servers.length, id)
       parallel(this.servers.map(url => listener.servers[url]).map(server =>
         cb => {
-          log("listen %s", server.url)
+          log('listen %s', server.url)
           const next = once(err => {
-            log("listen %s ok %s", server.url, !err)
+            log('listen %s ok %s', server.url, !err)
             if (err) return cb(log(err))
             listener.online.push(server)
             return cb()
           })
-          setTimeout(next, this.opt.timeout || 5000, new Error("Timeout"))
-          server.listen(multiaddr(server.url).encapsulate("ipfs/" + id), next)
+          setTimeout(next, this.opt.timeout || 5000, new Error('Timeout'))
+          server.listen(multiaddr(server.url).encapsulate('ipfs/' + id), next)
         }), () => {
         if (!listener.online.length && !this.opt.ignore_no_online) {
           const e = new Error("Couldn't listen on any of the servers")
-          listener.emit("error", e)
+          listener.emit('error', e)
           cb(e)
         } else {
-          listener.emit("listening")
+          listener.emit('listening')
           cb()
         }
       })
@@ -76,12 +76,11 @@ class WebsocketStarMulti { //listen on multiple websocket star servers without h
     })
 
     return listener
-
   }
 
-  filter(ma) {
+  filter (ma) {
     if (!Array.isArray(ma)) ma = [ma]
-    return ma.filter(ma => ma.toString().startsWith("/p2p-websocket-star") || mafmt.WebSocketStar.matches(ma))
+    return ma.filter(ma => ma.toString().startsWith('/p2p-websocket-star') || mafmt.WebSocketStar.matches(ma))
   }
 }
 

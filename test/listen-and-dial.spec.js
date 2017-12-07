@@ -1,15 +1,18 @@
-"use strict"
+/* eslint-env mocha */
+/* eslint-disable max-nested-callbacks */
 
-const addrs = ["/ip4/127.0.0.1/tcp/15001/ws/p2p-websocket-star", "/ip4/127.0.0.1/tcp/15002/ws/p2p-websocket-star", "/ip6/::1/tcp/15003/ws/p2p-websocket-star"]
-const addr_off = "/ip4/127.0.0.1/tcp/16000/ws/p2p-websocket-star"
+'use strict'
+
+const servers = ['/ip4/127.0.0.1/tcp/15001/ws/p2p-websocket-star', '/ip4/127.0.0.1/tcp/15002/ws/p2p-websocket-star', '/ip6/::1/tcp/15003/ws/p2p-websocket-star']
+const offlineServer = '/ip4/127.0.0.1/tcp/16000/ws/p2p-websocket-star'
 
 const chai = require('chai')
 const dirtyChai = require('dirty-chai')
 const expect = chai.expect
-const multiaddr = require("multiaddr")
-const getMa = id => multiaddr("/p2p-websocket-star/ipfs/" + id.toB58String())
-const pull = require("pull-stream")
-const pullTestData = [Buffer.from("hello world!")]
+const multiaddr = require('multiaddr')
+const getMa = id => multiaddr('/p2p-websocket-star/ipfs/' + id.toB58String())
+const pull = require('pull-stream')
+const pullTestData = [Buffer.from('hello world!')]
 const pullTest = (conn, cb) => pull(pull.values(pullTestData.slice(0)), conn, pull.collect((err, res) => {
   expect(err).to.not.exist()
   expect(res).to.eql(pullTestData)
@@ -17,26 +20,26 @@ const pullTest = (conn, cb) => pull(pull.values(pullTestData.slice(0)), conn, pu
 }))
 chai.use(dirtyChai)
 
-const Id = require("peer-id")
+const Id = require('peer-id')
 const {
   each,
   map
-} = require("async")
-const multi = require("..")
+} = require('async')
+const WSMulti = require('..')
 
-describe("websocket-star-multi", () => {
+describe('websocket-star-multi', () => {
   let ids
-  before(cb => map(require("./ids.json"), Id.createFromJSON, (err, _) => err ? cb(err) : cb(null, (ids = _))))
+  before(cb => map(require('./ids.json'), Id.createFromJSON, (err, _) => err ? cb(err) : cb(null, (ids = _))))
   let l = []
-  describe("listen", () => {
+  describe('listen', () => {
     let id
     before(() => {
       id = ids[0]
     })
-    it("should listen on 1 address", cb => {
-      const listener = new multi({
+    it('should listen on 1 address', cb => {
+      const listener = new WSMulti({
         id,
-        servers: [addrs[0]]
+        servers: [servers[0]]
       }).createListener()
       l.push(listener)
       listener.listen(getMa(id), err => {
@@ -46,10 +49,10 @@ describe("websocket-star-multi", () => {
       })
     })
 
-    it("should listen on 3 addresses", cb => {
-      const listener = new multi({
+    it('should listen on 3 addresses', cb => {
+      const listener = new WSMulti({
         id,
-        servers: addrs
+        servers: servers
       }).createListener()
       l.push(listener)
       listener.listen(getMa(id), err => {
@@ -59,13 +62,13 @@ describe("websocket-star-multi", () => {
       })
     })
 
-    it("listen on offline server should fail", cb => {
-      const listener = new multi({
+    it('listen on offline server should fail', cb => {
+      const listener = new WSMulti({
         id,
-        servers: [addr_off]
+        servers: [offlineServer]
       }).createListener()
       l.push(listener)
-      listener.once("error", () => {})
+      listener.once('error', () => {})
       listener.listen(getMa(id), err => {
         expect(err).to.exist()
         expect(listener.online).to.have.lengthOf(0)
@@ -73,10 +76,10 @@ describe("websocket-star-multi", () => {
       })
     })
 
-    it("listen on offline server and up server should not fail", cb => {
-      const listener = new multi({
+    it('listen on offline server and up server should not fail', cb => {
+      const listener = new WSMulti({
         id,
-        servers: [addrs[0], addr_off]
+        servers: [servers[0], offlineServer]
       }).createListener()
       l.push(listener)
       listener.listen(getMa(id), err => {
@@ -86,10 +89,10 @@ describe("websocket-star-multi", () => {
       })
     })
 
-    it("listen on offline server with ignore_no_online should not fail", cb => {
-      const listener = new multi({
+    it('listen on offline server with ignore_no_online should not fail', cb => {
+      const listener = new WSMulti({
         id,
-        servers: [addr_off],
+        servers: [offlineServer],
         ignore_no_online: true
       }).createListener()
       l.push(listener)
@@ -100,13 +103,13 @@ describe("websocket-star-multi", () => {
       })
     })
   })
-  describe("dial", () => {
+  describe('dial', () => {
     let c1, c2, c3
     before(cb => {
       map(ids, (id, cb) => {
-        const m = new multi({
+        const m = new WSMulti({
           id,
-          servers: addrs
+          servers: servers
         })
         const l = m.createListener(conn => pull(conn, conn))
         l.id = id
@@ -121,16 +124,16 @@ describe("websocket-star-multi", () => {
       })
     })
 
-    it("c1 should dial to c2 over server 2", cb => {
-      const toDial = multiaddr(addrs[1] + "/ipfs/" + c2.id.toB58String())
+    it('c1 should dial to c2 over server 2', cb => {
+      const toDial = multiaddr(servers[1] + '/ipfs/' + c2.id.toB58String())
       c1.dial(toDial, (err, conn) => {
         expect(err).to.not.exist()
         pullTest(conn, cb)
       })
     })
 
-    it("c1 dial c3 over non-existent server should fail", cb => {
-      const toDial = multiaddr(addr_off + "/ipfs/" + c2.id.toB58String())
+    it('c1 dial c3 over non-existent server should fail', cb => {
+      const toDial = multiaddr(offlineServer + '/ipfs/' + c2.id.toB58String())
       c1.dial(toDial, (err, conn) => {
         expect(err).to.exist()
         expect(conn).to.not.exist()

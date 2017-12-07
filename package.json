@@ -4,15 +4,16 @@
   "description": "Allows to listen on multiple websocket-star-rendezvous servers while ignoring offline ones",
   "main": "src/index.js",
   "scripts": {
+    "test": "aegir test",
+    "lint": "aegir lint",
     "build": "aegir build",
-    "test": "aegir test --target node --target browser",
-    "test:node": "aegir test --target node",
-    "test:browser": "aegir test --target browser",
-    "release": "aegir test release --lint=false --target node --target browser",
-    "release-minor": "aegir release --lint=false --type minor --target node --target browser",
-    "release-major": "aegir release --lint=false --type major --target node --target browser",
+    "test:node": "aegir test -t node",
+    "test:browser": "aegir test -t browser",
+    "release": "aegir release",
+    "release-minor": "aegir release --type minor",
+    "release-major": "aegir release --type major",
     "coverage": "aegir coverage",
-    "coverage-publish": "aegir coverage --provider coveralls"
+    "coverage-publish": "aegir coverage -u"
   },
   "keywords": [
     "libp2p",
@@ -33,7 +34,7 @@
   "dependencies": {
     "async": "^2.5.0",
     "debug": "^3.1.0",
-    "libp2p-websocket-star": "^0.5.0",
+    "libp2p-websocket-star": "^0.7.2",
     "mafmt": "^3.0.2",
     "multiaddr": "^3.0.1",
     "once": "^1.4.0"
@@ -42,7 +43,6 @@
     "aegir": "^12.1.1",
     "chai": "^4.1.2",
     "dirty-chai": "^2.0.1",
-    "gulp": "^3.9.1",
     "libp2p-websocket-star-rendezvous": "github:libp2p/js-libp2p-websocket-star-rendezvous",
     "lodash": "^4.17.4"
   }
