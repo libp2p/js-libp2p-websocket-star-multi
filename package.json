@@ -45,5 +45,8 @@
     "dirty-chai": "^2.0.1",
     "libp2p-websocket-star-rendezvous": "github:libp2p/js-libp2p-websocket-star-rendezvous",
     "lodash": "^4.17.4"
-  }
+  },
+  "contributors": [
+    "mkg20001 <mkg20001@gmail.com>"
+  ]
 }
