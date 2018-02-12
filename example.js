@@ -15,11 +15,11 @@ Id.create((err, id) => {
   peerInfo.multiaddrs.add(multiaddr('/p2p-websocket-star')) // will get replaced to the multiaddr of the individual servers
   const ws = new WSStarMulti({
     servers: [ // servers are Multiaddr[]
-      '/dns/ws-star-signal-1.servep2p.com/tcp/443/wss/p2p-websocket-star',
-      '/dns/ws-star-signal-2.servep2p.com/tcp/443/wss/p2p-websocket-star',
-      '/dns/ws-star-signal-3.servep2p.com/tcp/443/wss/p2p-websocket-star',
-      '/dns/ws-star-signal-4.servep2p.com/tcp/443/wss/p2p-websocket-star',
-      '/dns/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star',
+      '/dnsaddr/ws-star-signal-1.servep2p.com/tcp/443/wss/p2p-websocket-star',
+      '/dnsaddr/ws-star-signal-2.servep2p.com/tcp/443/wss/p2p-websocket-star',
+      '/dnsaddr/ws-star-signal-3.servep2p.com/tcp/443/wss/p2p-websocket-star',
+      '/dnsaddr/ws-star-signal-4.servep2p.com/tcp/443/wss/p2p-websocket-star',
+      '/dnsaddr/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star',
       '/dns4/localhost/tcp/80/ws/p2p-websocket-star'
     ],
     // ignore_no_online: true, // enable this to prevent wstar-multi from returning a listen error if no servers are online
