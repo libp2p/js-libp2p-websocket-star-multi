@@ -1,3 +1,13 @@
+<a name="0.3.2"></a>
+## [0.3.2](https://github.com/mkg20001/js-libp2p-websocket-star-multi/compare/v0.3.1...v0.3.2) (2018-02-12)
+
+
+### Bug Fixes
+
+* /dns{ => addr} in readme ([1ca38b1](https://github.com/mkg20001/js-libp2p-websocket-star-multi/commit/1ca38b1))
+
+
+
 <a name="0.3.1"></a>
 ## [0.3.1](https://github.com/mkg20001/js-libp2p-websocket-star-multi/compare/v0.3.0...v0.3.1) (2018-02-12)
 
