@@ -54,7 +54,7 @@ class WebsocketStarMulti { // listen on multiple websocket star servers without 
             return cb()
           })
           setTimeout(next, this.opt.timeout || 5000, new Error('Timeout'))
-          server.listen(multiaddr(server.url).encapsulate('ipfs/' + id), next)
+          server.listen(multiaddr(server.url).encapsulate('/ipfs/' + id), next)
         }), () => {
         if (!listener.online.length && !this.opt.ignore_no_online) {
           const e = new Error("Couldn't listen on any of the servers")
