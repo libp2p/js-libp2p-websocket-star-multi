@@ -57,7 +57,6 @@ describe('websocket-star-multi', () => {
       l.push(listener)
       listener.listen(getMa(id), err => {
         expect(err).to.not.exist()
-        console.log(listener.online.map(({ url }) => url))
         expect(listener.online).to.have.lengthOf(3)
         cb()
       })
