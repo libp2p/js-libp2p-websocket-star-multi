@@ -57,7 +57,7 @@ describe('websocket-star-multi', () => {
       l.push(listener)
       listener.listen(getMa(id), err => {
         expect(err).to.not.exist()
-        expect(listener.online).to.have.lengthOf(3)
+        expect(listener.online).to.have.lengthOf(!process.env.TRAVIS ? 3 : 2)
         cb()
       })
     })
