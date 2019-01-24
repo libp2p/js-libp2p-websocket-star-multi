@@ -3,7 +3,7 @@
 
 'use strict'
 
-const servers = ['/ip4/127.0.0.1/tcp/15001/ws/p2p-websocket-star', '/ip4/127.0.0.1/tcp/15002/ws/p2p-websocket-star', '/ip6/::1/tcp/15003/ws/p2p-websocket-star']
+const servers = ['/ip4/127.0.0.1/tcp/15001/ws/p2p-websocket-star', '/ip4/127.0.0.1/tcp/15002/ws/p2p-websocket-star'].concat(!process.env.TRAVIS ? ['/ip6/::1/tcp/15003/ws/p2p-websocket-star'] : [])
 const offlineServer = '/ip4/127.0.0.1/tcp/16000/ws/p2p-websocket-star'
 
 const chai = require('chai')
