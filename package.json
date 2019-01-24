@@ -1,6 +1,6 @@
 {
   "name": "libp2p-websocket-star-multi",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Allows to listen on multiple websocket-star-rendezvous servers while ignoring offline ones",
   "main": "src/index.js",
   "scripts": {
@@ -47,6 +47,7 @@
     "lodash": "^4.17.11"
   },
   "contributors": [
+    "Alan Shaw <alan.shaw@protocol.ai>",
     "Maciej Krüger <mkg20001@gmail.com>"
   ]
 }
