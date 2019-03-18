@@ -5,10 +5,8 @@ const log = debug('libp2p:websocket-star:multi')
 const once = require('once')
 
 const EE = require('events').EventEmitter
-const {
-  map,
-  parallel
-} = require('async')
+const map = require('async/map')
+const parallel = require('async/parallel')
 const multiaddr = require('multiaddr')
 const mafmt = require('mafmt')
 
