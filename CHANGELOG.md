@@ -1,3 +1,14 @@
+<a name="0.4.4"></a>
+## [0.4.4](https://github.com/mkg20001/js-libp2p-websocket-star-multi/compare/v0.4.3...v0.4.4) (2019-03-19)
+
+
+### Bug Fixes
+
+* **test:** travis ipv6 fix ([ed1bff0](https://github.com/mkg20001/js-libp2p-websocket-star-multi/commit/ed1bff0))
+* reduce bundle size ([edd3a4b](https://github.com/mkg20001/js-libp2p-websocket-star-multi/commit/edd3a4b))
+
+
+
 <a name="0.4.3"></a>
 ## [0.4.3](https://github.com/mkg20001/js-libp2p-websocket-star-multi/compare/v0.4.0...v0.4.3) (2019-01-24)
 
