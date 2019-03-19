@@ -43,7 +43,7 @@
     "aegir": "^15.3.1",
     "chai": "^4.2.0",
     "dirty-chai": "^2.0.1",
-    "libp2p-websocket-star-rendezvous": "github:libp2p/js-libp2p-websocket-star-rendezvous",
+    "libp2p-websocket-star-rendezvous": "~0.3.0",
     "lodash": "^4.17.11"
   },
   "contributors": [

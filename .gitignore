@@ -37,3 +37,6 @@ stage
 *.tar.bz2
 *.snap
 snap/.snapcraft
+
+
+yarn.lock
