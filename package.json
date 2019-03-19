@@ -32,15 +32,15 @@
   },
   "homepage": "https://github.com/mkg20001/js-libp2p-websocket-star-multi#readme",
   "dependencies": {
-    "async": "^2.6.1",
-    "debug": "^4.1.0",
+    "async": "^2.6.2",
+    "debug": "^4.1.1",
     "libp2p-websocket-star": "~0.10.2",
-    "mafmt": "^6.0.2",
-    "multiaddr": "^6.0.3",
+    "mafmt": "^6.0.7",
+    "multiaddr": "^6.0.6",
     "once": "^1.4.0"
   },
   "devDependencies": {
-    "aegir": "^15.3.1",
+    "aegir": "^18.2.1",
     "chai": "^4.2.0",
     "dirty-chai": "^2.0.1",
     "libp2p-websocket-star-rendezvous": "~0.3.0",
