@@ -1,4 +1,6 @@
-# libp2p-websocket-star
+⛔️ DEPRECATED: libp2p-websocket-star-multi is not supported anymore from [libp2p@0.27.0](https://github.com/libp2p/js-libp2p/releases/tag/v0.27.0). Check [js-libp2p/doc/CONFIGURATION.md](https://github.com/libp2p/js-libp2p/blob/master/doc/CONFIGURATION.md) for what modules are currently supported.
+
+# libp2p-websocket-star-multi
 
 [![](https://img.shields.io/badge/made%20by-mkg20001-blue.svg?style=flat-square)](http://ipn.io)
 [![Build Status](https://travis-ci.org/libp2p/js-libp2p-websocket-star.svg?style=flat-square)](https://travis-ci.org/libp2p/js-libp2p-websocket-star)
